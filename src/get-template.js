@@ -80,6 +80,10 @@ const getTemplate = (params) => {
                 }
     
                 const iframes = document.getElementsByTagName('iframe');
+
+                iframes.forEach((iframe) => {
+                    alert(iframe.src);
+                })
     
                 const recaptchaFrame = Array.prototype.find
                     .call(iframes, e => e.src.includes('google.com/recaptcha/api2/bframe'));
