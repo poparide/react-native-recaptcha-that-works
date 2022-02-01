@@ -123,6 +123,16 @@ const Recaptcha = forwardRef(
             (content) => {
                 try {
                     const payload = JSON.parse(content.nativeEvent.data);
+                    // debug
+                    if (payload) {
+                        if (payload.type === 'Console') {
+                          console.info(`[Console] ${JSON.stringify(payload.data)}`);
+                        } else {
+                          console.log(payload)
+                        }
+                      }
+                      // end debug
+                    
                     if (payload.close) {
                         if (isInvisibleSize) {
                             handleClose();
@@ -191,10 +201,23 @@ const Recaptcha = forwardRef(
             );
         };
 
+        const debugging = `
+            // Debug
+            console = new Object();
+            console.log = function(log) {
+                window.ReactNativeWebView.postMessage(log);
+            };
+            console.debug = console.log;
+            console.info = console.log;
+            console.warn = console.log;
+            console.error = console.log;
+            `;
+
         return (
             <Modal visible={visible} onRequestClose={handleClose} transparent>
                 {headerComponent}
                 <WebView
+                    injectedJavascript={debugging}
                     ref={$webView}
                     originWhitelist={originWhitelist}
                     source={source}
