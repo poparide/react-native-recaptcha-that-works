@@ -82,11 +82,11 @@ const getTemplate = (params) => {
                 const iframes = document.getElementsByTagName('iframe');
 
                 iframes.forEach((iframe) => {
-                    alert(iframe.src);
+                    console.log(iframe.src);
                 })
     
                 const recaptchaFrame = Array.prototype.find
-                    .call(iframes, e => e.src.includes('google.com/recaptcha/api2/bframe'));
+                    .call(iframes, e => e.src.includes('recaptcha'));
                 const recaptchaElement = recaptchaFrame.parentNode.parentNode;
     
                 clearInterval(onCloseInterval);
