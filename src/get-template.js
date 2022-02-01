@@ -30,8 +30,6 @@ const getTemplate = (params) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://www.google.com">
-        <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
         <title></title>
         <script src="https://www.google.com/recaptcha/enterprise.js?hl={{lang}}" async defer></script>
         <script>
