@@ -31,7 +31,7 @@ const getTemplate = (params) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
-        <script src="https://www.google.com/recaptcha/api.js?hl={{lang}}" async defer></script>
+        <script src="https://www.google.com/recaptcha/enterprise.js?hl={{lang}}" async defer></script>
         <script>
             const siteKey = '{{siteKey}}';
             const theme = '{{theme}}';
@@ -72,7 +72,7 @@ const getTemplate = (params) => {
                 }));
             }
     
-            const isReady = () => Boolean(typeof window === 'object' && window.grecaptcha && window.grecaptcha.render);
+            const isReady = () => Boolean(typeof window === 'object' && window.grecaptcha.enterprise && window.grecaptcha.enterprise.render);
     
             const registerOnCloseListener = () => {
                 if (onCloseObserver) {
@@ -80,9 +80,13 @@ const getTemplate = (params) => {
                 }
     
                 const iframes = document.getElementsByTagName('iframe');
+
+                iframes.forEach((iframe) => {
+                    console.log(iframe.src);
+                })
     
                 const recaptchaFrame = Array.prototype.find
-                    .call(iframes, e => e.src.includes('google.com/recaptcha/api2/bframe'));
+                    .call(iframes, e => e.src.includes('google.com/recaptcha/enterprise/bframe'));
                 const recaptchaElement = recaptchaFrame.parentNode.parentNode;
     
                 clearInterval(onCloseInterval);
@@ -106,7 +110,7 @@ const getTemplate = (params) => {
             }
     
             const renderRecaptcha = () => {
-                widget = window.grecaptcha.render('recaptcha-container', {
+                widget = window.grecaptcha.enterprise.render('recaptcha-container', {
                     sitekey: siteKey,
                     size,
                     theme,
@@ -136,10 +140,10 @@ const getTemplate = (params) => {
             
             window.rnRecaptcha = {
                 execute: () => {
-                    window.grecaptcha.execute(widget);
+                    window.grecaptcha.enterprise.execute(widget);
                 },
                 reset: () => {
-                    window.grecaptcha.reset(widget);
+                    window.grecaptcha.enterprise.reset(widget);
                 },
             }
         </script>
