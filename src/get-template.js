@@ -72,7 +72,7 @@ const getTemplate = (params) => {
                 }));
             }
     
-            const isReady = () => Boolean(typeof window === 'object' && window.grecaptcha && window.grecaptcha.render);
+            const isReady = () => Boolean(typeof window === 'object' && window.grecaptcha.enterprise && window.grecaptcha.enterprise.render);
     
             const registerOnCloseListener = () => {
                 if (onCloseObserver) {
@@ -106,7 +106,7 @@ const getTemplate = (params) => {
             }
     
             const renderRecaptcha = () => {
-                widget = window.grecaptcha.render('recaptcha-container', {
+                widget = window.grecaptcha.enterprise.render('recaptcha-container', {
                     sitekey: siteKey,
                     size,
                     theme,
@@ -136,10 +136,10 @@ const getTemplate = (params) => {
             
             window.rnRecaptcha = {
                 execute: () => {
-                    window.grecaptcha.execute(widget);
+                    window.grecaptcha.enterprise.execute(widget);
                 },
                 reset: () => {
-                    window.grecaptcha.reset(widget);
+                    window.grecaptcha.enterprise.reset(widget);
                 },
             }
         </script>
