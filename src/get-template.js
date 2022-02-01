@@ -86,7 +86,7 @@ const getTemplate = (params) => {
                 })
     
                 const recaptchaFrame = Array.prototype.find
-                    .call(iframes, e => e.src.includes('recaptcha'));
+                    .call(iframes, e => e.src.includes('google.com/recaptcha/enterprise/bframe'));
                 const recaptchaElement = recaptchaFrame.parentNode.parentNode;
     
                 clearInterval(onCloseInterval);
